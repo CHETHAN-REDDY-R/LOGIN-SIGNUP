@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="header">
+        <div class="text">{{ action }}</div>
+        <div class="underline"></div>
+    </div>
+    <div class="inputs">
+        <ng-container *ngIf="action === 'Login'; else signupInputs">
+            <div class="input">
+                <img src="assets/email.png" alt="email" />
+                <input type="email" placeholder="Email Id" />
+            </div>
+            <div class="input">
+                <img src="assets/password.png" alt="password" />
+                <input type="password" placeholder="Password" />
+            </div>
+        </ng-container>
+        <ng-template #signupInputs>
+            <div class="input">
+                <img src="assets/user.png" alt="user" />
+                <input type="text" placeholder="Name" />
+            </div>
+            <div class="input">
+                <img src="assets/email.png" alt="email" />
+                <input type="email" placeholder="Email Id" />
+            </div>
+            <div class="input">
+                <img src="assets/password.png" alt="password" />
+                <input type="password" placeholder="Password" />
+            </div>
+        </ng-template>
+    </div>
+    <div *ngIf="action !== 'Sign Up'; else signUpTemplate" class="forgot-password">
+        Forgot Password? <span>Click Here!</span>
+    </div>
+    <ng-template #signUpTemplate>
+        <div></div>
+    </ng-template>
+    <div class="submit-container">
+        <div [ngClass]="action==='Sign Up'?'submit':'submit gray' " (click)="setAction('Sign Up')">
+            Sign Up
+        </div>
+        <div [ngClass]="{ 'submit gray': action === 'Sign Up', 'submit': action !== 'Sign Up' }"
+            (click)="setAction('Login')">
+            Login
+        </div>
+    </div>
+</div>
